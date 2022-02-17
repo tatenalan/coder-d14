@@ -7,7 +7,6 @@ const calculation = () => {
     let quantity = +process.argv[2];
     for (let i = 0; i < quantity; i++) {
         number = Math.floor(Math.random() * (max - min)) + min;
-        console.log(number);
         repetitions = mapRandom.get(number)
         if (repetitions) {
             mapRandom.set(number, ++repetitions)
