@@ -1,11 +1,12 @@
 const calculation = () => {
     let max = 1001
     let min = 1
-    let number = null
     let mapRandom = new Map();
-    let repetitions = null;
     let quantity = +process.argv[2];
+
     for (let i = 0; i < quantity; i++) {
+        const repetitions = null;
+        const number = null
         number = Math.floor(Math.random() * (max - min)) + min;
         repetitions = mapRandom.get(number)
         if (repetitions) {

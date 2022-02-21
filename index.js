@@ -194,6 +194,9 @@ app.get('/api/randoms', (req, res) => {
 
 })
 
+// CORRECCION DE ROLANDO
+// No hacía falta escuchar el evento request, eso ya lo hace internamente express, tenías que usar el router para definir la ruta a random como lo tenés arriba del evento request.
+
 server.on("request", async (req, res) => {
     let {url} = req;
     console.log('entro al server request');
