@@ -191,27 +191,13 @@ app.get('/info', (req, res) => {
 
 
 app.get('/api/randoms', (req, res) => {
-
+    let quantity = req.query.cant ? +req.query.cant : 100000000;
+    const mapRandom = fork("./calculation.js", [quantity]);
+    mapRandom.send('start')
+    mapRandom.on('message', result => {
+        res.json(result)
+    })
 })
-
-// CORRECCION DE ROLANDO
-// No hacía falta escuchar el evento request, eso ya lo hace internamente express, tenías que usar el router para definir la ruta a random como lo tenés arriba del evento request.
-
-server.on("request", async (req, res) => {
-    let {url} = req;
-    console.log('entro al server request');
-    if(url.includes('/api/randoms')){
-        let quantity = req.query.cant ? +req.query.cant : 100000000;
-        const mapRandom = fork("./calculation.js", [quantity]);
-        mapRandom.send('start')
-        mapRandom.on('message', result => {
-           res.json(result)
-        })
-    }
-})
-
-
-
     
 // ruta 404
 app.get('*', (req, res) => {
